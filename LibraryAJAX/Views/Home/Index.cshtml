@@ -1,0 +1,190 @@
+﻿@{
+    /**/
+
+    ViewBag.Title = "Home Page";
+}
+
+Author:
+<input type="text" id="author" class="form-control"
+       oninput="searchA()" /><br />
+
+Title:
+<input type="text" id="title" class="form-control"
+       oninput="searchT()" /><br />
+
+Year:
+<input type="text" id="year" class="form-control"
+       oninput="searchY()" /><br />
+
+Publisher:
+<input type="text" id="publisher" class="form-control"
+       oninput="searchP()" /><br />
+
+<table class="table table-striped" id="book"></table>
+
+<script type="text/javascript"
+        src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    function searchA() {
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/Home/GetByAuthor',
+                data: '{author: "' + document.getElementById("author").value
+                    + '"}',
+                contentType: 'application/json; charset-utf-8',
+                dataType: 'json',
+                success:
+                    function (response) {
+                        var tableHTML = "<tr><th>Title</th>"
+                            + "<th>Author</th>"
+                            + "<th>Publisher</th>"
+                            + "<th>Year Published</th>"
+                            + "<th>Genre</th></tr>";
+                        for (var i = 0; i < response.length; i++) {
+                            var book = response[i];
+                            var tr = "<tr><td>" + book.Title + "</td>"
+                                + "<td>" + book.Author + "</td>"
+                                + "<td>" + book.Publisher + "</td>"
+                                + "<td>" + book.YearPublished + "</td>"
+                                + "<td>" + book.Genre + "</td>"
+                                + "</tr>";
+                            tableHTML += tr;
+                        }
+                        document.getElementById("book")
+                            .innerHTML = tableHTML;
+                    },
+                failure: function (response) {
+                    alert("Failure" + response.responseText);
+                },
+                error: function (response) {
+                    alert("Error" + response.responseText);
+                }
+            }
+
+        );
+    }
+</script>
+<script>
+    function searchT() {
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/Home/GetByTitle',
+                data: '{title: "' + document.getElementById("title").value
+                    + '"}',
+                contentType: 'application/json; charset-utf-8',
+                dataType: 'json',
+                success:
+                    function (response) {
+                        var tableHTML = "<tr><th>Title</th>"
+                            + "<th>Author</th>"
+                            + "<th>Publisher</th>"
+                            + "<th>Year Published</th>"
+                            + "<th>Genre</th></tr>";
+                        for (var i = 0; i < response.length; i++) {
+                            var book = response[i];
+                            var tr = "<tr><td>" + book.Title + "</td>"
+                                + "<td>" + book.Author + "</td>"
+                                + "<td>" + book.Publisher + "</td>"
+                                + "<td>" + book.YearPublished + "</td>"
+                                + "<td>" + book.Genre + "</td>"
+                                + "</tr>";
+                            tableHTML += tr;
+                        }
+                        document.getElementById("book")
+                            .innerHTML = tableHTML;
+                    },
+                failure: function (response) {
+                    alert("Failure" + response.responseText);
+                },
+                error: function (response) {
+                    alert("Error" + response.responseText);
+                }
+            }
+
+        );
+    }
+</script>
+<script>
+    function searchY() {
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/Home/GetByYearPublished',
+                data: '{year: "' + document.getElementById("year").value
+                    + '"}',
+                contentType: 'application/json; charset-utf-8',
+                dataType: 'json',
+                success:
+                    function (response) {
+                        var tableHTML = "<tr><th>Title</th>"
+                            + "<th>Author</th>"
+                            + "<th>Publisher</th>"
+                            + "<th>Year Published</th>"
+                            + "<th>Genre</th></tr>";
+                        for (var i = 0; i < response.length; i++) {
+                            var book = response[i];
+                            var tr = "<tr><td>" + book.Title + "</td>"
+                                + "<td>" + book.Author + "</td>"
+                                + "<td>" + book.Publisher + "</td>"
+                                + "<td>" + book.YearPublished + "</td>"
+                                + "<td>" + book.Genre + "</td>"
+                                + "</tr>";
+                            tableHTML += tr;
+                        }
+                        document.getElementById("book")
+                            .innerHTML = tableHTML;
+                    },
+                failure: function (response) {
+                    alert("Failure" + response.responseText);
+                },
+                error: function (response) {
+                    alert("Error" + response.responseText);
+                }
+            }
+
+        );
+    }
+</script>
+<script>
+    function searchP() {
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/Home/GetByPublisher',
+                data: '{publisher: "' + document.getElementById("publisher").value
+                    + '"}',
+                contentType: 'application/json; charset-utf-8',
+                dataType: 'json',
+                success:
+                    function (response) {
+                        var tableHTML = "<tr><th>Title</th>"
+                            + "<th>Author</th>"
+                            + "<th>Publisher</th>"
+                            + "<th>Year Published</th>"
+                            + "<th>Genre</th></tr>";
+                        for (var i = 0; i < response.length; i++) {
+                            var book = response[i];
+                            var tr = "<tr><td>" + book.Title + "</td>"
+                                + "<td>" + book.Author + "</td>"
+                                + "<td>" + book.Publisher + "</td>"
+                                + "<td>" + book.YearPublished + "</td>"
+                                + "<td>" + book.Genre + "</td>"
+                                + "</tr>";
+                            tableHTML += tr;
+                        }
+                        document.getElementById("book")
+                            .innerHTML = tableHTML;
+                    },
+                failure: function (response) {
+                    alert("Failure" + response.responseText);
+                },
+                error: function (response) {
+                    alert("Error" + response.responseText);
+                }
+            }
+
+        );
+    }
+</script>
